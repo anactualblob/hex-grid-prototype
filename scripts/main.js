@@ -38,8 +38,25 @@ function setup () {
 
     gridLayout = new Layout(Layout.flat, gridSize, gridOrigin);
 
-    testHex = new hex(0,0);
-    testHex.draw(gridLayout);
+    grid = [
+        new hex(0,0),
+        new hex(0,1),
+        new hex(-1,1),
+        new hex(1,-1),
+        new hex(-1,0),
+        new hex(0,-1),
+        new hex(1,0),
+        new hex(-1,-1),
+        new hex(1,1),
+        new hex(-2,0),
+        new hex(0,-2),
+        new hex(2,0),
+        new hex(0,2)
+    ]
+    
+    for (let i in grid) {
+        grid[i].draw(gridLayout);
+    }
 
 }
 
