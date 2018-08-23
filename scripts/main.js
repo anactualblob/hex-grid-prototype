@@ -12,9 +12,12 @@ let state;
 const gridSize = new vector2(50,50);
 const gridOrigin = new vector2(256,256);
 const gridContainer = new PIXI.Container();
+let player;
+let startPos = new hex(0,0);
+
 
 let grid = [
-    new hex(0,0),
+    new hex(0,0, "red"),
     new hex(0,1),
     new hex(-1,1),
     new hex(1,-1),
@@ -48,6 +51,7 @@ let app = new Application({
 
 //LOADING & SETUP
 loader
+    .add("../images/player.png")
     .on("progress", loadProgressHandler)
     .load(setup);
 
@@ -62,6 +66,13 @@ function setup () {
 
     gridLayout = new Layout(Layout.flat, gridSize, gridOrigin);
     app.stage.addChild(gridContainer);
+
+    player = new Sprite(
+        resources["../images/player.png"].texture
+    );
+    app.stage.addChild(player);
+    player.position.set(gridLayout.hexToPixel(startPos).x, gridLayout.hexToPixel(startPos).y);
+    player.anchor.set(0.5, 0.5);
 
 }
 
@@ -82,3 +93,10 @@ function gridDraw (delta) {
 function play (delta) {
 
 }
+
+
+
+//Utils
+/*function hexMove(sprite, v2Pos, layout=gridLayout) {
+    sprite.position.set(layout.hexToPixel(v2Pos).x, layout.hexToPixel(v2Pos).y);
+}*/

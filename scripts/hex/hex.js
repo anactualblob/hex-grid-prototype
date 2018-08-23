@@ -2,15 +2,31 @@
 //// HEX CLASS ////
 ///////////////////
 class hex {
-    constructor(x, y, z) {
+    constructor(x, y, color="white") {
         this.hx = x;
         this.hy = y;
-        if (z == undefined) {
-            this.hz = -x-y;
+        this.hz = -this.hx - this.hy;
+
+        switch (color) {
+            case "blue":
+                this.color = 0x0000ff;
+                break;
+            case "red":
+                this.color = 0xff0000;
+                break;
+            case "green":
+                this.color = 0x00ff00;
+                break;
+            case "yellow":
+                this.color = 0xffff00;
+                break;
+            case "white":
+                this.color = 0xffffff;
+                break;
+            default:
+                throw "bad color - color param must be one of these : 'blue', 'red', 'green', 'yellow', 'white'."
         }
-        if (Math.round(this.hx + this.hy + this.hz) !== 0) {
-            throw "bad coordinates : x + y + z must be equal to 0";
-        }
+
     }
     // Hex equality declaration
     // syntax : hex1.equals(hex2)
@@ -45,21 +61,20 @@ class hex {
 
     // Drawing the hex tile
     draw (layout) {
-        let graphics = new PIXI.Graphics();
-        graphics.lineStyle(2, 0xffffff, 1, 0.5);
+        
         let hexCorners = layout.Corners(this);
 
+        let graphics = new PIXI.Graphics();
+        graphics.lineStyle(2, this.color, 1, 1);
         graphics.moveTo(hexCorners[0].x, hexCorners[0].y);
 
         for (let i = 0; i < hexCorners.length; i++) {
-
             if (i<5) {
                 graphics.lineTo(hexCorners[i+1].x, hexCorners[i+1].y);
             } else {
                 graphics.lineTo(hexCorners[0].x, hexCorners[0].y);
             }
         }
-
         return graphics;
     }
 }
