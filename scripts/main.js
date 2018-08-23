@@ -38,7 +38,7 @@ function setup () {
 
     gridLayout = new Layout(Layout.flat, gridSize, gridOrigin);
 
-    testHex = new hex(0,0,0);
+    testHex = new hex(0,0);
     testHex.draw(gridLayout);
 
 }

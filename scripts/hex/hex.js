@@ -5,8 +5,10 @@ class hex {
     constructor(x, y, z) {
         this.hx = x;
         this.hy = y;
-        this.hz = z;
-        if (Math.round(x + y + z) !== 0) {
+        if (z == undefined) {
+            this.hz = -x-y;
+        }
+        if (Math.round(this.hx + this.hy + this.hz) !== 0) {
             throw "bad coordinates : x + y + z must be equal to 0";
         }
     }
