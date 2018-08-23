@@ -26,7 +26,13 @@ let grid = [
     new hex(-2,0),
     new hex(0,-2),
     new hex(2,0),
-    new hex(0,2)
+    new hex(0,2),
+    new hex(1,-2),
+    new hex(-2, 1),
+    new hex(-1,2),
+    new hex(2,-1),
+    new hex(2,-2),
+    new hex(-2,2)
 ]
 
 
