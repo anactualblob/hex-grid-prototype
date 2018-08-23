@@ -12,8 +12,10 @@ let state;
 const gridSize = new vector2(50,50);
 const gridOrigin = new vector2(256,256);
 const gridContainer = new PIXI.Container();
+let hexCursor = new PIXI.Container();
 let player;
 let startPos = new hex(0,0);
+let mouseHex = new hex(0,0, "yellow");
 
 
 let grid = [
@@ -49,6 +51,10 @@ let app = new Application({
 });
 
 
+let mousePos = app.renderer.plugins.interaction.mouse.global;
+let mouseHexPos;
+
+
 //LOADING & SETUP
 loader
     .add("images/player.png")
@@ -66,6 +72,8 @@ function setup () {
 
     gridLayout = new Layout(Layout.flat, gridSize, gridOrigin);
     app.stage.addChild(gridContainer);
+    app.stage.addChild(hexCursor);
+
 
     player = new Sprite(
         resources["images/player.png"].texture
@@ -73,6 +81,11 @@ function setup () {
     app.stage.addChild(player);
     player.position.set(gridLayout.hexToPixel(startPos).x, gridLayout.hexToPixel(startPos).y);
     player.anchor.set(0.5, 0.5);
+
+
+    hexCursor.addChild(mouseHex.draw(gridLayout));
+    hexCursor.visible = false;
+
 
 }
 
@@ -92,7 +105,27 @@ function gridDraw (delta) {
 
 function play (delta) {
 
+
+    for (let i in grid) {
+        if (grid[i].equals(gridLayout.pixelToHex(mousePos).round()) && !grid[i].equals(gridLayout.pixelToHex(hexCursor))) {
+            console.log("drawing");
+            hexCursor.position.x = gridLayout.hexToPixel(grid[i]).x;
+            hexCursor.position.y = gridLayout.hexToPixel(grid[i]).y;
+            hexCursor.visible = true;
+        }
+
+
+
+        /*if (grid[i].equals(gridLayout.pixelToHex(mousePos).round()) && !grid[i].equals(mouseHex)) {
+            console.log("drawing");
+            mouseHex.hx = grid[i].hx;
+            mouseHex.hy = grid[i].hy;
+            gridContainer.addChild(mouseHex.draw(gridLayout));
+    }*/
+    }
+
 }
+
 
 
 

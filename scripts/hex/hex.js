@@ -2,12 +2,12 @@
 //// HEX CLASS ////
 ///////////////////
 class hex {
-    constructor(x, y, color="white") {
+    constructor(x, y, line="white") {
         this.hx = x;
         this.hy = y;
         this.hz = -this.hx - this.hy;
 
-        switch (color) {
+        switch (line) {
             case "blue":
                 this.color = 0x0000ff;
                 break;
@@ -24,7 +24,8 @@ class hex {
                 this.color = 0xffffff;
                 break;
             default:
-                throw "bad color - color param must be one of these : 'blue', 'red', 'green', 'yellow', 'white'."
+                this.color = 0xffffff;
+                console.log("you passed : " + line + "----" + " bad color, defaulting to white");
         }
 
     }
@@ -77,6 +78,26 @@ class hex {
         }
         return graphics;
     }
+
+    // Rounding decimal hex values
+    round() {
+        var xi = Math.round(this.hx);
+        var yi = Math.round(this.hy);
+        var zi = Math.round(this.hz);
+        var x_diff = Math.abs(xi - this.hx);
+        var y_diff = Math.abs(yi - this.hy);
+        var z_diff = Math.abs(zi - this.hz);
+        if (x_diff > y_diff && x_diff > z_diff) {
+            xi = -yi - zi;
+        }
+        else if (y_diff > z_diff) {
+            yi = -xi - zi;
+        }
+        else {
+            zi = -xi - yi;
+        }
+        return new hex(xi, yi);
+    }
 }
 
 // This whole part is lifted more or less verbatum from https://www.redblobgames.com/grids/hexagons/implementation.html
@@ -126,7 +147,7 @@ class Layout {
         var pt = new vector2((pos.x - origin.x) / size.x, (pos.y - origin.y) / size.y);
         var q = M.b0 * pt.x + M.b1 * pt.y;
         var r = M.b2 * pt.x + M.b3 * pt.y;
-        return new hex(q, r, -q - r);
+        return new hex(q, r);
     }
 
 
