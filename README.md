@@ -6,9 +6,9 @@ This is a prototype of an interactible hex grid made with JavaScript and PixiJs.
 
 ## User Stories
 The user stories I want this prototype to fulfill (in order of descending priority)
-- [ ] A hex grid is diplayed.
-- [ ] Each hex has a property that I can change (e.g. its color).
-- [ ] A player sprite is diplayed on a hex.
+- [x] A hex grid is diplayed.
+- [x] Each hex has a property that I can change (e.g. its color).
+- [x] A player sprite is diplayed on a hex.
 - [ ] The program knows the coordinates of a hex I click on.
 - [ ] Clicking on the player then on a hex makes the player srpite move to that hex along the grid.
 - [ ] The player sprite has a limited range.
