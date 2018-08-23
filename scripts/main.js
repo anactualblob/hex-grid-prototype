@@ -51,7 +51,7 @@ let app = new Application({
 
 //LOADING & SETUP
 loader
-    .add("../images/player.png")
+    .add("images/player.png")
     .on("progress", loadProgressHandler)
     .load(setup);
 
@@ -68,7 +68,7 @@ function setup () {
     app.stage.addChild(gridContainer);
 
     player = new Sprite(
-        resources["../images/player.png"].texture
+        resources["images/player.png"].texture
     );
     app.stage.addChild(player);
     player.position.set(gridLayout.hexToPixel(startPos).x, gridLayout.hexToPixel(startPos).y);
