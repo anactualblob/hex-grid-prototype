@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html>
+    
+<head>
+
+    <!-- CSS & FONTS -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- SCRIPTS -->
     <script src="scripts/pixi/pixi.min.js"></script>
     <script src="scripts/hex/hex.js"></script>
     <script src="scripts/main.js"></script>
-<body>
-    <h1>Pixi Canvas</h1>
 
-    <div id="game"></div>
-    <script>document.getElementById("game").appendChild(app.view);</script>
-    
+
+</head>
+
+<body>
+    <div id="container">
+        <h1>Pixi Canvas</h1>
+
+        <div id="game"></div>
+        <script>document.getElementById("game").appendChild(app.view);</script>
+
+        <hr>
+        
+        <div id="desc">
+            <p>This is where the description will go. It's empty for now.</p>
+        </div>
+    </div>
 </body>
+
 </html>

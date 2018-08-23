@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(133, 133, 133);
+    padding:0px;
+    margin:0px;
+    font-family: Roboto;
+}
+
+h1 {
+    width : 512px;
+    margin: 40px auto;
+}
+
+#game {
+    width : 512px;
+    margin: auto;
+    box-shadow: 0px 4px 16px 3px rgba(0, 0, 0, 0.4);
+    height : 512px;
+}
+
+#container {
+    background-color: rgb(228, 228, 228);
+    width : 700px;
+    margin : 10px auto 0px;
+    padding : 1px 0px 150px;
+    height : 100%;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+    margin : 50px auto;
+    width : 80%;
+    border: none;
+    height: 1px;
+    background-color:black;
+}
+
+#desc {
+    width : 512px;
+    margin : 10px auto;
+}    

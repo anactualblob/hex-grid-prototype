@@ -10,7 +10,7 @@ The user stories I want this prototype to fulfill (in order of descending priori
 - [x] Each hex has a property that I can change (e.g. its color).
 - [x] A player sprite is diplayed on a hex.
 - [ ] The program knows the coordinates of a hex I click on.
-- [ ] Clicking on the player then on a hex makes the player srpite move to that hex along the grid.
+- [ ] Clicking on the player then on a hex makes the player sprite move to that hex along the grid.
 - [ ] The player sprite has a limited range.
 - [ ] The player range is diplayed on the grid when I click on the player.
 - [ ] To create the grid, I can pass a text file with the grid layout and the property for each hex.
