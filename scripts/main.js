@@ -9,8 +9,26 @@ let Application = PIXI.Application,
 
 //VARIABLES
 let state;
-let gridSize = new vector2(50,50);
-let gridOrigin = new vector2(256,256);
+const gridSize = new vector2(50,50);
+const gridOrigin = new vector2(256,256);
+const gridContainer = new PIXI.Container();
+
+let grid = [
+    new hex(0,0),
+    new hex(0,1),
+    new hex(-1,1),
+    new hex(1,-1),
+    new hex(-1,0),
+    new hex(0,-1),
+    new hex(1,0),
+    new hex(-1,-1),
+    new hex(1,1),
+    new hex(-2,0),
+    new hex(0,-2),
+    new hex(2,0),
+    new hex(0,2)
+]
+
 
 //APP DECLARATION
 let app = new Application({
@@ -33,30 +51,11 @@ function loadProgressHandler(loader, resource) {
 }
 
 function setup () {
-    state = play;
+    state = gridDraw;
     app.ticker.add(delta => GameLoop(delta));
 
     gridLayout = new Layout(Layout.flat, gridSize, gridOrigin);
-
-    grid = [
-        new hex(0,0),
-        new hex(0,1),
-        new hex(-1,1),
-        new hex(1,-1),
-        new hex(-1,0),
-        new hex(0,-1),
-        new hex(1,0),
-        new hex(-1,-1),
-        new hex(1,1),
-        new hex(-2,0),
-        new hex(0,-2),
-        new hex(2,0),
-        new hex(0,2)
-    ]
-    
-    for (let i in grid) {
-        grid[i].draw(gridLayout);
-    }
+    app.stage.addChild(gridContainer);
 
 }
 
@@ -64,6 +63,14 @@ function setup () {
 //GAMELOOP & STATES
 function GameLoop (delta) {
     state(delta);
+}
+
+function gridDraw (delta) {
+    for (let i in grid) {
+        gridContainer.addChild(grid[i].draw(gridLayout));
+    }
+
+    state = play;
 }
 
 function play (delta) {

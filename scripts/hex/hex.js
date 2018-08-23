@@ -60,7 +60,7 @@ class hex {
             }
         }
 
-        app.stage.addChild(graphics);
+        return graphics;
     }
 }
 
