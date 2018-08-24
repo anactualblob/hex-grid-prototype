@@ -17,8 +17,8 @@ let app = new Application({
 });
 
 //GRID VARIABLES
-let gridSize;
-let gridOrigin;
+let gridSize = new Point(25,25);
+let gridOrigin = new Point(85,100);
 let gridLayout;
 let gridContainer = new Container;
 
@@ -44,8 +44,6 @@ function loadProgressHandler(loader, resource) {
 function setup () {
 
     //Variable Setting
-    gridSize = new Point (25,25);
-    gridOrigin = new Point (50, 100);
     gridLayout = Layout(flat, gridSize, gridOrigin);
     app.stage.addChild(gridContainer);
 
