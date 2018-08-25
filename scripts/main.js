@@ -2,6 +2,7 @@
 let state;
 let substate;
 let level = "level.txt";
+let grid;
 
 let click = false;
 
@@ -25,8 +26,10 @@ function GameLoop (delta) {
 // PLAY STATE //
 ////////////////
 function play (delta) {
-    substate(delta);
+    hexCursor.position.x = hexToPixel(gridLayout, hexRound(pixelToHex(gridLayout, mousePos))).x;
+    hexCursor.position.y = hexToPixel(gridLayout, hexRound(pixelToHex(gridLayout, mousePos))).y;
 
+    substate(delta);
 }
 
 // "Waiting for click" substate
@@ -59,7 +62,7 @@ function play_playerClicked(delta) {
         click = false;
 
         let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
-        
+
         playerMove(hexClick);
         substate = play_waitingForInput;
     }

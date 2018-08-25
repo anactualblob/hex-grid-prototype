@@ -2,6 +2,8 @@
 let hexPlayerPos = hex(0,0);
 let hexMoveTarget;
 
+let hexCursor;
+
 
 // called in setup() to initialize the player
 function playerSetup() {
@@ -14,10 +16,10 @@ function playerSetup() {
     app.stage.addChild(player);
 }
 
+
 function playerMove(targetHex) {
     player.position.x = hexToPixel(gridLayout, targetHex).x;
     player.position.y = hexToPixel(gridLayout, targetHex).y;
 
     hexPlayerPos = hexRound(pixelToHex(gridLayout, new Point(player.position.x, player.position.y)));
-    console.log(hexPlayerPos);
 }

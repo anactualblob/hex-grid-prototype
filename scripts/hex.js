@@ -45,9 +45,9 @@ function hexRound(h) {
     yd = y - h.hy;
     zd = z - h.hz;
 
-    if (xd > yd && xd > zd) {
+    if (xd < yd && xd < zd) {
         x = -y - z;
-    } else if (yd > zd) {
+    } else if (yd < zd) {
         y = -x - z;
     } else {
         z = -x - y;

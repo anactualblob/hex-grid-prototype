@@ -20,11 +20,11 @@ let app = new Application({
 let Interaction = app.renderer.plugins.interaction;
 
 //GRID VARIABLES
-let gridSize = new Point(25,25);
-let gridOrigin = new Point(85,100);
+let gridSize = new Point(27,27);
+let gridOrigin = new Point(75,100);
 let gridLayout;
 let gridContainer = new Container;
-let clickZone = new Container;
+let overlay = new Container;
 
 
 
@@ -51,14 +51,19 @@ function setup () {
     //Variable Setting
     gridLayout = Layout(flat, gridSize, gridOrigin);
     app.stage.addChild(gridContainer);
-    app.stage.addChild(clickZone);
+    app.stage.addChild(overlay);
 
-    //SPRITES
+
+    hexCursor = new Sprite(resources["images/hex_alpha.png"].texture);
+    hexCursor.anchor.set(0.5,0.5);
+    overlay.addChild(hexCursor);
+
+
     //Player
     playerSetup();
     
 
-    // Starting gameloop at play state
+    // Starting gameloop at play state, waiting for input substate & loading level
     state = play;
     substate = play_waitingForInput;
     gridLoading(level);
