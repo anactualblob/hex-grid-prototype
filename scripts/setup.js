@@ -6,6 +6,7 @@ let Application = PIXI.Application,
     Sprite = PIXI.Sprite;
     Point = PIXI.Point;
     Container = PIXI.Container;
+    Interaction = app.renderer.plugins.interaction;
 
 //APP DECLARATION
 let app = new Application({
