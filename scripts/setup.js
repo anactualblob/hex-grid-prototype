@@ -6,7 +6,6 @@ let Application = PIXI.Application,
     Sprite = PIXI.Sprite;
     Point = PIXI.Point;
     Container = PIXI.Container;
-    Interaction = app.renderer.plugins.interaction;
 
 //APP DECLARATION
 let app = new Application({
@@ -16,6 +15,9 @@ let app = new Application({
     transparent: false,
     resolution: 1
 });
+
+
+let Interaction = app.renderer.plugins.interaction;
 
 //GRID VARIABLES
 let gridSize = new Point(25,25);
@@ -39,7 +41,7 @@ loader
 
 function loadProgressHandler(loader, resource) {
     console.log('loading : ' + resource.url);
-    console.log("progress : " + loader.progress + "%");
+    console.log("progress : " + Math.floor(loader.progress) + "%");
 }
 
 function setup () {
