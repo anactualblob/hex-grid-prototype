@@ -52,13 +52,7 @@ function setup () {
 
     //SPRITES
     //Player
-    player = new Sprite(resources["images/player.png"].texture);
-    player.position.x = hexToPixel(gridLayout, hex(0,0)).x;
-    player.position.y = hexToPixel(gridLayout, hex(0,0)).y;
-
-    player.anchor.set(0.5,0.5);
-
-    app.stage.addChild(player);
+    playerSetup();
     
 
     // Starting gameloop at play state
