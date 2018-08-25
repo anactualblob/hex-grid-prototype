@@ -53,7 +53,6 @@ async function parseGrid (url) {
     }
 
     // replaces characters by hexes or undefined
-    // TODO : add cases for characters other than 0 (hex type change)
     for (let i in grid) {
         for (let j = 0; j<grid[i].length; j++) {
 
@@ -81,6 +80,5 @@ async function parseGrid (url) {
             }
         }
     }
-    console.log(grid);
     return grid;
 }

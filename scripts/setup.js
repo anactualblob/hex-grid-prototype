@@ -57,9 +57,6 @@ function setup () {
 
     app.stage.addChild(player);
     
-    //Hexes
-
-    
 
     // Starting gameloop at play state
     state = play;

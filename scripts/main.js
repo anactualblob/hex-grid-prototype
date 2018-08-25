@@ -1,27 +1,9 @@
-/*let grid = [
-    new hex(0,0, "red"),
-    new hex(0,1),
-    new hex(-1,1),
-    new hex(1,-1),
-    new hex(-1,0),
-    new hex(0,-1),
-    new hex(1,0),
-    new hex(-1,-1),
-    new hex(1,1),
-    new hex(-2,0),
-    new hex(0,-2),
-    new hex(2,0),
-    new hex(0,2),
-    new hex(1,-2),
-    new hex(-2, 1),
-    new hex(-1,2),
-    new hex(2,-1),
-    new hex(2,-2),
-    new hex(-2,2)
-]*/
-
+//VARIABLES
 let state;
+let substate;
 let level = "level.txt";
+
+
 
 //GAMELOOP & STATES
 function GameLoop (delta) {
@@ -30,9 +12,15 @@ function GameLoop (delta) {
 
 function play (delta) {
 
+
 }
 
 
+
+
+
+
+//returns a sprite from a hex according to the type of the hex
 function spawnHex(hexCoord) {
     let ret;
 
@@ -66,8 +54,10 @@ function spawnHex(hexCoord) {
 }
 
 
-
+// Displays the grid for "level"
+// arg : string with level file name
 async function gridLoading(level) {
+
     grid = await parseGrid("scripts/grids/" + level);
     
     for (let i in grid) {
@@ -81,8 +71,6 @@ async function gridLoading(level) {
                 gridContainer.addChild(grid[i][j].sprite);
                 
             }
-
         }
     }
-
 }
