@@ -11,8 +11,8 @@ The user stories I want this prototype to fulfill (in order of descending priori
 - [x] A player sprite is diplayed on a hex.
 - [x] The program knows the coordinates of a hex I click on.
 - [x] Clicking on the player then on a hex makes the player sprite move to that hex.
-- [ ] The player sprite has a limited range.
-- [ ] The player range is diplayed on the grid when I click on the player.
+- [x] The player sprite has a limited range.
+- [x] The player range is diplayed on the grid when I click on the player.
 - [x] To create the grid, I can pass a text file with the grid layout and the property for each hex.
 - [ ] The player moves smoothly along the grid.
 - [ ] The player can't walk on some hexes. The displayed range adapts to this constraint.

@@ -26,6 +26,8 @@ function GameLoop (delta) {
 // PLAY STATE //
 ////////////////
 function play (delta) {
+
+    // pretty ugly, maybe better way ?
     hexCursor.position.x = hexToPixel(gridLayout, hexRound(pixelToHex(gridLayout, mousePos))).x;
     hexCursor.position.y = hexToPixel(gridLayout, hexRound(pixelToHex(gridLayout, mousePos))).y;
 
@@ -43,13 +45,17 @@ function play_waitingForInput (delta) {
 
 // "Click just happened" substate
 function play_clicked(delta) {
-
     console.log("clicked");
-    //Do Stuff
+
     let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
 
     if (hexEqual(hexClick, hexPlayerPos)) {
         substate = play_playerClicked;
+
+        // display player range
+        
+        app.stage.addChild(playerDisplayRange());
+
     } else {
         substate = play_waitingForInput;
     }
@@ -57,14 +63,17 @@ function play_clicked(delta) {
 
 // "Player was clicked" substate
 function play_playerClicked(delta) {
-    console.log("in playerCLicked")
+    //console.log("in playerCLicked")
     if (click) {
         click = false;
 
         let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
-
-        playerMove(hexClick);
-        substate = play_waitingForInput;
+        
+        if (hexDistance(hexPlayerPos, hexClick) <= playerRange) {
+            playerMove(hexClick);
+            substate = play_waitingForInput;
+        }
+        
     }
 
 }

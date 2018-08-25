@@ -8,7 +8,8 @@ function hex(x, y, type="white") {
 }
 
 
-// hex operations
+// HEX OPERATIONS
+// returns true if hex coordinates are equal
 function hexEqual(hex1, hex2) {
     return hex1.hx == hex2.hx && hex1.hy == hex2.hy && hex1.hz == hex2.hz;
 }
@@ -24,6 +25,39 @@ function hexSubstract(hex1, hex2) {
 function hexScale(hex, k) {
     return hex(hex.hx * k, hex.hy * k);
 }
+
+
+//NEIGHBORS
+//directions, starting from the top then clockwise
+let directions = [hex(0,-1), hex(+1, -1), hex(+1, 0), hex(0, +1), hex(-1, 1), hex(-1, 0)]; 
+
+//returns one neighbor if dir is specified, array of neighbor if dir is left out
+function hexNeighbor(h, dir=undefined) {
+    if (dir === undefined) {
+        let ret;
+        for (let i in directions) {
+            ret.push(hexAdd(h, directions[i]));
+        }
+        return ret;
+    } else if (dir >= 0 && dir < 6) {
+        return hexAdd(h, directions[dir]);
+    } else {
+        throw "dir must be between 0 (included) and 6 (excluded)";
+    }
+}
+
+
+
+// returns distance between origin & h
+function hexLength(h) {
+    return (Math.abs(h.hx) + Math.abs(h.hy) + Math.abs(h.hz)) / 2;
+}
+
+// returns distance between hex1 & hex2 in hexes
+function hexDistance(hex1, hex2) {
+    return hexLength(hexSubstract(hex2, hex1));
+}
+
 
 
 // convert text file coordinates to hex
