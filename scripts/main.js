@@ -3,17 +3,69 @@ let state;
 let substate;
 let level = "level.txt";
 
+let click = false;
+
+let mousePos = Interaction.mouse.global;
+
+
 
 
 //GAMELOOP & STATES
 function GameLoop (delta) {
     state(delta);
+
+    Interaction.on ("pointerdown", () => {
+        click = true;
+    });
 }
 
+
+
+////////////////
+// PLAY STATE //
+////////////////
 function play (delta) {
-
+    substate(delta);
 
 }
+
+// "Waiting for click" substate
+function play_waitingForInput (delta) {
+
+    if (click) {
+        substate = play_clicked;
+        click = false;
+    }
+}
+
+// "Click just happened" substate
+function play_clicked(delta) {
+
+    console.log("clicked");
+    //Do Stuff
+    let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
+
+    if (hexEqual(hexClick, hexPlayerPos)) {
+        substate = play_playerClicked;
+    } else {
+        substate = play_waitingForInput;
+    }
+}
+
+// "Player was clicked" substate
+function play_playerClicked(delta) {
+    console.log("in playerCLicked")
+    if (click) {
+        click = false;
+
+        let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
+        
+        playerMove(hexClick);
+        substate = play_waitingForInput;
+    }
+
+}
+
 
 
 

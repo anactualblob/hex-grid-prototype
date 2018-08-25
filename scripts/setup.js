@@ -24,6 +24,8 @@ let gridSize = new Point(25,25);
 let gridOrigin = new Point(85,100);
 let gridLayout;
 let gridContainer = new Container;
+let clickZone = new Container;
+
 
 
 
@@ -49,6 +51,7 @@ function setup () {
     //Variable Setting
     gridLayout = Layout(flat, gridSize, gridOrigin);
     app.stage.addChild(gridContainer);
+    app.stage.addChild(clickZone);
 
     //SPRITES
     //Player
@@ -57,6 +60,7 @@ function setup () {
 
     // Starting gameloop at play state
     state = play;
+    substate = play_waitingForInput;
     gridLoading(level);
     app.ticker.add(delta => GameLoop(delta));
     
