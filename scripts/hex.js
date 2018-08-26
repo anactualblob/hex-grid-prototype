@@ -58,6 +58,27 @@ function hexDistance(hex1, hex2) {
     return hexLength(hexSubstract(hex2, hex1));
 }
 
+// Line
+function lerp(a, b, t) {
+    return (a * (1-t) + b * t);
+}
+
+function hexLerp(hex1, hex2, t) {
+    return hex(lerp(hex1.hx, hex2.hx, t) , lerp(hex1.hy, hex2.hy, t));
+}
+
+function hexLine (hex1, hex2) {
+    let dist = hexDistance(hex1, hex2);
+    let ret = [];
+    var hex1_nudge = hex(hex1.hx + 0.000001, hex1.hy + 0.000001, hex1.hz - 0.000002);
+    var hex2_nudge = hex(hex2.hx + 0.000001, hex2.hy + 0.000001, hex2.hz - 0.000002);
+    let step = 1/Math.max(dist, 1);
+    for (let i = 0; i<= dist; i++) {
+        ret.push(hexRound(hexLerp(hex1_nudge, hex2_nudge, step * i)));
+    }
+    return ret;
+}
+
 
 
 // convert text file coordinates to hex

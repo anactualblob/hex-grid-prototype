@@ -8,6 +8,10 @@ let click = false;
 
 let mousePos = Interaction.mouse.global;
 
+let step;
+let point;
+let line;
+
 
 
 
@@ -37,6 +41,8 @@ function play (delta) {
 // "Waiting for click" substate
 function play_waitingForInput (delta) {
 
+    //console.log("waitin");
+
     if (click) {
         substate = play_clicked;
         click = false;
@@ -45,7 +51,6 @@ function play_waitingForInput (delta) {
 
 // "Click just happened" substate
 function play_clicked(delta) {
-    console.log("clicked");
 
     let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
 
@@ -53,7 +58,6 @@ function play_clicked(delta) {
         substate = play_playerClicked;
 
         // display player range
-        
         overlay.addChild(playerDisplayRange());
 
     } else {
@@ -63,15 +67,19 @@ function play_clicked(delta) {
 
 // "Player was clicked" substate
 function play_playerClicked(delta) {
-    //console.log("in playerCLicked")
     if (click) {
         click = false;
 
         let hexClick = hexRound(pixelToHex(gridLayout, mousePos));
         
         if (hexDistance(hexPlayerPos, hexClick) <= playerRange) {
-            playerMove(hexClick);
-            substate = play_waitingForInput;
+            //playerMove(hexClick);
+            substate = play_playerMoving;
+            
+            line = hexLine(hexPlayerPos, hexClick);
+            step = 0;
+            point = 0;
+            
             overlay.removeChildren (1, overlay.children.length);
         }
         
@@ -79,6 +87,29 @@ function play_playerClicked(delta) {
 
 }
 
+// moving the player substate
+function play_playerMoving() {
+
+    if (!playerSmoothMove(line[point], step)) {
+        step += speed;
+
+    } else {
+        if (point < line.length-1) {
+
+            point++;
+            step = speed;          
+            hexPlayerPos = hexRound(pixelToHex(gridLayout, new Point(player.position.x, player.position.y)));
+
+        } else {
+
+            hexPlayerPos = hexRound(pixelToHex(gridLayout, new Point(player.position.x, player.position.y)));
+            substate = play_waitingForInput;
+
+        }
+
+    }
+
+}
 
 
 
