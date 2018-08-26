@@ -54,7 +54,7 @@ function play_clicked(delta) {
 
         // display player range
         
-        app.stage.addChild(playerDisplayRange());
+        overlay.addChild(playerDisplayRange());
 
     } else {
         substate = play_waitingForInput;
@@ -72,6 +72,7 @@ function play_playerClicked(delta) {
         if (hexDistance(hexPlayerPos, hexClick) <= playerRange) {
             playerMove(hexClick);
             substate = play_waitingForInput;
+            overlay.removeChildren (1, overlay.children.length);
         }
         
     }

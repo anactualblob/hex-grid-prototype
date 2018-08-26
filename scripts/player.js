@@ -2,10 +2,9 @@
 let hexPlayerPos = hex(0,0);
 let hexMoveTarget;
 
-let playerRange = 2;
+let playerRange = 3;
 
 let hexCursor;
-let displayedRange;
 
 
 // called in setup() to initialize the player
@@ -21,10 +20,18 @@ function playerSetup() {
 
 
 function playerMove(targetHex) {
-    player.position.x = hexToPixel(gridLayout, targetHex).x;
-    player.position.y = hexToPixel(gridLayout, targetHex).y;
+    for (let i in grid) {
+        for (let j in grid[i]) {
+            if (grid[i][j] != undefined) {
+                if (hexEqual(targetHex, grid[i][j].hex)) {
+                    player.position.x = hexToPixel(gridLayout, targetHex).x;
+                    player.position.y = hexToPixel(gridLayout, targetHex).y;
 
-    hexPlayerPos = hexRound(pixelToHex(gridLayout, new Point(player.position.x, player.position.y)));
+                    hexPlayerPos = hexRound(pixelToHex(gridLayout, new Point(player.position.x, player.position.y)));
+                }
+            }
+        }
+    }    
 }
 
 
