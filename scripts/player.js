@@ -48,7 +48,7 @@ function playerSmoothMove(h, step) {
     player.position.x = hexToPixel(gridLayout, hexLerp(hexPlayerPos, h, step)).x;
     player.position.y = hexToPixel(gridLayout, hexLerp(hexPlayerPos, h, step)).y;
 
-
+    // need to account for when going up or left
     if (player.position.x >= hexToPixel(gridLayout, h).x && player.position.y >= hexToPixel(gridLayout, h).y) {
         
         player.position.x = hexToPixel(gridLayout, h).x;
