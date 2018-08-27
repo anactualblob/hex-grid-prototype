@@ -20,14 +20,14 @@ h1 {
 #container {
     background-color: rgb(228, 228, 228);
     width : 700px;
-    margin : 10px auto 0px;
-    padding : 1px 0px 150px;
+    margin : 10px auto 10px;
+    padding : 1px 0px 20px;
     height : 100%;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 hr {
-    margin : 50px auto;
+    margin : 40px auto 35px;
     width : 80%;
     border: none;
     height: 1px;
@@ -35,6 +35,11 @@ hr {
 }
 
 #desc {
+    text-align: justify;
     width : 512px;
     margin : 10px auto;
-}    
+} 
+
+#desc p {
+    margin: 5px 0px;
+}

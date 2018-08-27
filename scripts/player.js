@@ -3,7 +3,7 @@ let hexPlayerPos = hex(0,0);
 let hexMoveTarget;
 
 let playerRange = 3;
-let speed = 0.05;
+let speed = 0.15;
 
 let hexCursor;
 

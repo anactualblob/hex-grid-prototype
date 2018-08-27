@@ -27,7 +27,18 @@
         <hr>
 
         <div id="desc">
-            <p>This is a prototype of a hex grid I threw together in about a week. For now, it isn't interactive. Check out <a href="https://github.com/blobLucas/hex-grid-prototype">the repo on Github.</a></p>
+            <p>This is a prototype of a hex grid I threw together in a week. You can move the player by clicking on it and clicking on a hex in its range. The colors don't mean anything.</p>
+            <p>The grid is constructed by passing a text file to the program that looks like <a href="scripts/grids/level.txt" target="_blank">this</a>. Each character corresponds to a hex on the grid.</p>
+            <br>
+            <p>This is very buggy. Known bugs include :</p>
+            <ul>
+                <li>Going left or up will teleport the player instead of moving smoothly.</li>
+                <li>You can click outside of the grid and the player will move towards there and never stop.</li>
+                <li>Going up and right will make the player move infinitely.</li>
+            </ul>
+            <p>I won't be fixing these bugs, since I gave myself a week to complete this and the week has now ended. It was meant as an exercice/challenge in programming.</p>
+            <br>
+            <p>Made by Lucas Martinez, 2018. Check out <a href="https://github.com/blobLucas/hex-grid-prototype">the repo on Github.</a></p>
         </div>
     </div>
     
